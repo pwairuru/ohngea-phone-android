@@ -2,7 +2,7 @@
 ## Start of default rc
 
 [sip]
-contact="Linphone Android" <sip:linphone.android@unknown-host>
+contact="Ohngea Phone" <sip:ohngea.phone@unknown-host>
 use_ipv6=1
 keepalive_period=30000
 sip_port=-1

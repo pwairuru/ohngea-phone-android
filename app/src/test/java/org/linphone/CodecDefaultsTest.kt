@@ -37,5 +37,7 @@ class CodecDefaultsTest {
         val speex = mimes.filter { it.contains("speex") }
         assert(speex.isNotEmpty()) { "expected speex entries after opus" }
         assert(mimes.indexOf(speex.first()) > opusEnd) { "speex must come after opus, got $mimes" }
+        assertEquals(listOf("48000", "32000", "16000", "8000"), sections.take(4).map { entry(it.groupValues[2], "rate") })
+        assertEquals(listOf("1", "1", "1", "1"), sections.take(4).map { entry(it.groupValues[2], "enabled") })
     }
 }

@@ -221,6 +221,8 @@ class ThirdPartySipAccountLoginFragment : GenericFragment() {
             requireActivity(),
             model
         )
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
 
         model.dismissEvent.observe(viewLifecycleOwner) {
             it.consume {
