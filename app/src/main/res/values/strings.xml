@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 
 <!DOCTYPE resources [
-    <!ENTITY appName "Linphone">
+    <!ENTITY appName "Ohngea Phone">
 ]>
 
 <resources>
@@ -10,8 +10,8 @@
     <!-- Not translatable strings -->
     <string name="vertical_separator" translatable="false">|</string>
 
-    <string name="assistant_web_platform_link" translatable="false">subscribe.linphone.org</string>
-    <string name="assistant_linphone_contact_us_link" translatable="false">linphone.org/contact</string>
+    <string name="assistant_web_platform_link" translatable="false">ohngea.com</string>
+    <string name="assistant_linphone_contact_us_link" translatable="false">ohngea.com/contact</string>
 
     <string name="notification_channel_call_id" translatable="false">linphone_6.0_notification_call_id</string>
     <string name="notification_channel_incoming_call_id" translatable="false">linphone_6.0_notification_incoming_call_id</string>
@@ -31,16 +31,17 @@
     <string name="help_about_open_source_licenses_subtitle" translatable="false">© Belledonne Communications 2010-2025</string>
     <string name="help_advanced_send_debug_logs_email_address" translatable="false">linphone-android@belledonne-communications.com</string>
 
-    <string name="website_contact_url" translatable="false">https://linphone.org/contact</string>
-    <string name="website_download_url" translatable="false">https://linphone.org/linphone-softphone</string>
-    <string name="website_user_guide_url" translatable="false">https://linphone.org/en/docs/</string>
-    <string name="website_privacy_policy_url" translatable="false">https://linphone.org/en/privacy-policy</string>
-    <string name="website_terms_and_conditions_url" translatable="false">https://linphone.org/en/terms-of-use</string>
-    <string name="web_platform_register_email_url" translatable="false">https://subscribe.linphone.org/register/email</string>
-    <string name="web_platform_forgotten_password_url" translatable="false">https://subscribe.linphone.org</string>
-    <string name="website_translate_weblate_url" translatable="false">https://weblate.linphone.org/</string>
-    <string name="website_open_source_licences_usage_url" translatable="false">https://wiki.linphone.org/xwiki/wiki/public/view/Linphone/Third%20party%20components%20/#Hlinphone-android</string>
-    <string name="conversation_end_to_end_encrypted_bottom_sheet_link" translatable="false"><u>https://linphone.org/en/features/#security</u></string>
+    <string name="ohngea_website_url" translatable="false">https://ohngea.com</string>
+    <string name="website_contact_url" translatable="false">https://ohngea.com/contact</string>
+    <string name="website_download_url" translatable="false">https://ohngea.com/linphone-softphone</string>
+    <string name="website_user_guide_url" translatable="false">https://ohngea.com/en/docs/</string>
+    <string name="website_privacy_policy_url" translatable="false">https://ohngea.com/en/privacy-policy</string>
+    <string name="website_terms_and_conditions_url" translatable="false">https://ohngea.com/en/terms-of-use</string>
+    <string name="web_platform_register_email_url" translatable="false">https://ohngea.com/register/email</string>
+    <string name="web_platform_forgotten_password_url" translatable="false">https://ohngea.com</string>
+    <string name="website_translate_weblate_url" translatable="false">https://ohngea.com/</string>
+    <string name="website_open_source_licences_usage_url" translatable="false">https://ohngea.com/xwiki/wiki/public/view/Linphone/Third%20party%20components%20/#Hlinphone-android</string>
+    <string name="conversation_end_to_end_encrypted_bottom_sheet_link" translatable="false"><u>https://ohngea.com/en/features/#security</u></string>
 
     <string name="conversation_one_to_one_hidden_subject" translatable="false">Dummy subject</string>
 
@@ -423,7 +424,7 @@
     <string name="manage_account_device_remove">Remove</string>
     <string name="manage_account_device_last_connection">Last connection:</string>
     <string name="manage_account_dialog_remove_account_title">Sign out of your account?</string>
-    <string name="manage_account_dialog_remove_account_message">If you wish to delete your account permanently, go to: https://sip.linphone.org</string>
+    <string name="manage_account_dialog_remove_account_message">If you wish to delete your account permanently, go to: https://ohngea.com</string>
     <string name="manage_account_outbound_proxy">Outbound SIP Proxy</string>
     <string name="manage_account_dialog_outbound_proxy_help_message">If this field is filled, the outbound proxy will be enabled automatically. Leave it empty to disable it.</string>
 
