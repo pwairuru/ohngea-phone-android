@@ -13,8 +13,8 @@
         <item name="android:windowBackground">@color/background_color_dark_mode</item>
         <item name="android:statusBarColor">?attr/color_main1_500</item>
 
-        <item name="color_main1_100">@color/orange_main_100</item>
-        <item name="color_main1_500">@color/orange_main_500</item>
+        <item name="color_main1_100">@color/ohngea_teal_100</item>
+        <item name="color_main1_500">@color/ohngea_teal_500_night</item>
 
         <item name="color_main2_000">@color/background_color_dark_mode</item>
         <item name="color_main2_100">@color/gray_main2_800</item>

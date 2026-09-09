@@ -95,4 +95,9 @@
     <color name="mineral_blue_main_100">#C5E0F3</color>
     <color name="mineral_blue_main_500">#669ED7</color>
 
+    <color name="ohngea_teal_100">#D9F2EE</color>
+    <color name="ohngea_teal_500">#1DA795</color>
+    <color name="ohngea_teal_500_night">#35BFAE</color>
+    <color name="ohngea_amber_500">#F59E0B</color>
+
 </resources>
