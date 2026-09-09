@@ -53,6 +53,8 @@ imdn_to_everybody_threshold=1
 
 [ui]
 contacts_filter=
+assistant_go_directly_to_third_party_sip_account_login=1
+assistant_hide_create_account=1
 
 [account_creator]
 url=

@@ -73,6 +73,8 @@ class ThirdPartySipAccountLoginViewModel
 
     val loginEnabled = MediatorLiveData<Boolean>()
 
+    val conditionsAccepted = MutableLiveData<Boolean>()
+
     val registrationInProgress = MutableLiveData<Boolean>()
 
     val accountLoggedInEvent: MutableLiveData<Event<Boolean>> by lazy {
@@ -139,7 +141,11 @@ class ThirdPartySipAccountLoginViewModel
         showPassword.value = false
         expandAdvancedSettings.value = false
         registrationInProgress.value = false
+        conditionsAccepted.value = false
 
+        loginEnabled.addSource(conditionsAccepted) {
+            loginEnabled.value = isLoginButtonEnabled()
+        }
         loginEnabled.addSource(username) {
             loginEnabled.value = isLoginButtonEnabled()
         }
@@ -154,6 +160,7 @@ class ThirdPartySipAccountLoginViewModel
         availableTransports.add(TransportType.Tls.name.uppercase(Locale.getDefault()))
 
         coreContext.postOnCoreThread {
+            conditionsAccepted.postValue(corePreferences.conditionsAndPrivacyPolicyAccepted)
             domain.postValue(corePreferences.thirdPartySipAccountDefaultDomain)
 
             val defaultTransport = corePreferences.thirdPartySipAccountDefaultTransport.uppercase(
@@ -312,7 +319,8 @@ class ThirdPartySipAccountLoginViewModel
     @UiThread
     private fun isLoginButtonEnabled(): Boolean {
         // Password isn't mandatory as authentication could be Bearer
-        return username.value.orEmpty().isNotEmpty() && domain.value.orEmpty().isNotEmpty()
+        // Conditions & privacy policy must have been accepted first
+        return conditionsAccepted.value == true && username.value.orEmpty().isNotEmpty() && domain.value.orEmpty().isNotEmpty()
     }
 
     @UiThread

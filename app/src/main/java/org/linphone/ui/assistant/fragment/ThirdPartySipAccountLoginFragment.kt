@@ -20,6 +20,7 @@
 package org.linphone.ui.assistant.fragment
 
 import android.Manifest
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -31,18 +32,21 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.UiThread
+import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.linphone.LinphoneApplication.Companion.coreContext
+import org.linphone.LinphoneApplication.Companion.corePreferences
 import org.linphone.R
 import org.linphone.compatibility.Compatibility
 import org.linphone.core.tools.Log
 import org.linphone.databinding.AssistantThirdPartySipAccountLoginFragmentBinding
 import org.linphone.ui.GenericActivity
 import org.linphone.ui.GenericFragment
+import org.linphone.ui.assistant.model.AcceptConditionsAndPolicyDialogModel
 import org.linphone.ui.assistant.viewmodel.ThirdPartySipAccountLoginViewModel
 import org.linphone.ui.sso.SingleSignOnActivity
 import org.linphone.utils.DialogUtils
@@ -174,6 +178,16 @@ class ThirdPartySipAccountLoginFragment : GenericFragment() {
                 viewModel.internationalPrefixIsoCountryCode.postValue(dialPlan.isoCountryCode)
             }
         }
+
+        coreContext.postOnCoreThread {
+            val accepted = corePreferences.conditionsAndPrivacyPolicyAccepted
+            coreContext.postOnMainThread {
+                if (viewModel.conditionsAccepted.value != true && !accepted) {
+                    Log.i("$TAG Conditions & Privacy policy not accepted yet, showing dialog")
+                    showAcceptConditionsAndPrivacyDialog()
+                }
+            }
+        }
     }
 
     private fun goBack() {
@@ -183,5 +197,65 @@ class ThirdPartySipAccountLoginFragment : GenericFragment() {
     private fun showOutboundProxyInfoDialog() {
         val dialog = DialogUtils.getAccountOutboundProxyHelpDialog(requireActivity())
         dialog.show()
+    }
+
+    private fun showAcceptConditionsAndPrivacyDialog() {
+        val model = AcceptConditionsAndPolicyDialogModel()
+        val dialog = DialogUtils.getAcceptConditionsAndPrivacyDialog(
+            requireActivity(),
+            model
+        )
+
+        model.dismissEvent.observe(viewLifecycleOwner) {
+            it.consume {
+                dialog.dismiss()
+            }
+        }
+
+        model.conditionsAcceptedEvent.observe(viewLifecycleOwner) {
+            it.consume {
+                Log.i("$TAG Conditions & Privacy policy have been accepted")
+                viewModel.conditionsAccepted.value = true
+                coreContext.postOnCoreThread {
+                    corePreferences.conditionsAndPrivacyPolicyAccepted = true
+                }
+                dialog.dismiss()
+            }
+        }
+
+        model.privacyPolicyClickedEvent.observe(viewLifecycleOwner) {
+            it.consume {
+                val url = getString(R.string.website_privacy_policy_url)
+                openUrlInBrowser(url)
+            }
+        }
+
+        model.generalTermsClickedEvent.observe(viewLifecycleOwner) {
+            it.consume {
+                val url = getString(R.string.website_terms_and_conditions_url)
+                openUrlInBrowser(url)
+            }
+        }
+
+        dialog.show()
+    }
+
+    private fun openUrlInBrowser(url: String) {
+        try {
+            val browserIntent = Intent(Intent.ACTION_VIEW, url.toUri())
+            startActivity(browserIntent)
+        } catch (ise: IllegalStateException) {
+            Log.e(
+                "$TAG Can't start ACTION_VIEW intent for URL [$url], IllegalStateException: $ise"
+            )
+        } catch (anfe: ActivityNotFoundException) {
+            Log.e(
+                "$TAG Can't start ACTION_VIEW intent for URL [$url], ActivityNotFoundException: $anfe"
+            )
+        } catch (e: Exception) {
+            Log.e(
+                "$TAG Can't start ACTION_VIEW intent for URL [$url]: $e"
+            )
+        }
     }
 }

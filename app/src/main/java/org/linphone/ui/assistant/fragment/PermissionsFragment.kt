@@ -164,7 +164,7 @@ class PermissionsFragment : GenericFragment() {
                     }
                 } else {
                     coreContext.postOnMainThread {
-                        Log.w("$TAG No account was found, going to landing fragment")
+                        Log.w("$TAG No account was found, going to third-party login fragment")
                         try {
                             goToLoginFragment()
                         } catch (ise: IllegalStateException) {
@@ -181,7 +181,7 @@ class PermissionsFragment : GenericFragment() {
     private fun goToLoginFragment() {
         if (findNavController().currentDestination?.id == R.id.permissionsFragment) {
             val action =
-                PermissionsFragmentDirections.actionPermissionsFragmentToLandingFragment()
+                PermissionsFragmentDirections.actionPermissionsFragmentToThirdPartySipAccountLoginFragment()
             leaving = false
             findNavController().navigate(action)
         }
