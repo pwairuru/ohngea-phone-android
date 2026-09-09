@@ -117,6 +117,22 @@ class ThirdPartySipAccountLoginFragment : GenericFragment() {
             goBack()
         }
 
+        binding.setHelpClickListener {
+            if (findNavController().currentDestination?.id == R.id.thirdPartySipAccountLoginFragment) {
+                val action =
+                    ThirdPartySipAccountLoginFragmentDirections.actionThirdPartySipAccountLoginFragmentToHelpFragment()
+                findNavController().navigate(action)
+            }
+        }
+
+        binding.setQrCodeClickListener {
+            if (findNavController().currentDestination?.id == R.id.thirdPartySipAccountLoginFragment) {
+                val action =
+                    ThirdPartySipAccountLoginFragmentDirections.actionThirdPartySipAccountLoginFragmentToQrCodeScannerFragment()
+                findNavController().navigate(action)
+            }
+        }
+
         binding.setOutboundProxyTooltipClickListener {
             showOutboundProxyInfoDialog()
         }

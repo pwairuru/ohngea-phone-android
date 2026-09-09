@@ -10,6 +10,12 @@
             name="backClickListener"
             type="View.OnClickListener" />
         <variable
+            name="helpClickListener"
+            type="View.OnClickListener" />
+        <variable
+            name="qrCodeClickListener"
+            type="View.OnClickListener" />
+        <variable
             name="outboundProxyTooltipClickListener"
             type="View.OnClickListener" />
         <variable
@@ -54,6 +60,25 @@
                     app:layout_constraintBottom_toBottomOf="@id/back"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/default_text_style"
+                    android:id="@+id/help"
+                    android:onClick="@{helpClickListener}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:padding="10dp"
+                    android:text="@string/help_title"
+                    android:textSize="14sp"
+                    android:textColor="?attr/color_main2_500"
+                    android:drawableStart="@drawable/question"
+                    android:drawablePadding="5dp"
+                    android:background="@drawable/squircle_transparent_button_background"
+                    app:drawableTint="?attr/color_main2_500"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/third_party_login_title"
+                    app:layout_constraintBottom_toBottomOf="@id/third_party_login_title"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/header_style"
@@ -390,11 +415,30 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="@dimen/screen_bottom_margin"
                     android:text="@string/assistant_account_login"
                     app:layout_constraintWidth_max="@dimen/button_max_width"
-                    app:layout_constraintVertical_bias="1"
                     app:layout_constraintTop_toBottomOf="@id/outbound_proxy"
+                    app:layout_constraintBottom_toTopOf="@id/scan_qr_code"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/secondary_button_label_style"
+                    android:id="@+id/scan_qr_code"
+                    android:onClick="@{qrCodeClickListener}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="@dimen/screen_bottom_margin"
+                    android:text="@string/assistant_scan_qr_code"
+                    android:drawableStart="@drawable/qr_code"
+                    android:drawablePadding="8dp"
+                    app:drawableTint="@color/secondary_button_label_color"
+                    app:layout_constraintWidth_max="@dimen/button_max_width"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintTop_toBottomOf="@id/login"
                     app:layout_constraintBottom_toTopOf="@id/mountains"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />

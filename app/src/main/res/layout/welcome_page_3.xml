@@ -15,7 +15,7 @@
             android:layout_height="@dimen/welcome_icon_size"
             android:layout_marginTop="80dp"
             android:src="@drawable/welcome_open_source_logo"
-            android:contentDescription="@null"
+            android:contentDescription="@string/welcome_page_3_title"
             app:tint="?attr/color_main1_500"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintTop_toTopOf="parent"
