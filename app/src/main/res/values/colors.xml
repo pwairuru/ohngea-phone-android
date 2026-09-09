@@ -99,5 +99,6 @@
     <color name="ohngea_teal_500">#1DA795</color>
     <color name="ohngea_teal_500_night">#35BFAE</color>
     <color name="ohngea_amber_500">#F59E0B</color>
+    <color name="ohngea_launcher_background">#0F2E2B</color>
 
 </resources>
