@@ -44,7 +44,7 @@
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     android:contentDescription="@null"
-                    android:src="@drawable/assistant_logo"
+                    android:src="@drawable/ohngea_logo"
                     app:layout_constraintStart_toEndOf="@id/advanced_settings"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/mountains"

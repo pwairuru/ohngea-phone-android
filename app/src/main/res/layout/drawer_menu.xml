@@ -46,11 +46,10 @@
                 android:layout_height="@dimen/large_icon_size"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/linphone_notification"
+                android:src="@drawable/ohngea_logo"
                 android:contentDescription="@string/app_name"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:tint="?attr/color_main1_500" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/section_header_style"

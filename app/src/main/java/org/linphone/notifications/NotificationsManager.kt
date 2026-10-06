@@ -1006,7 +1006,7 @@ class NotificationsManager
                 )!!
             }
             val builder = NotificationCompat.Builder(context, channelId)
-                .setSmallIcon(R.drawable.linphone_notification)
+                .setSmallIcon(R.drawable.ohngea_notification)
                 .setAutoCancel(false)
                 .setOngoing(true)
                 .setCategory(NotificationCompat.CATEGORY_SERVICE)
@@ -1263,7 +1263,7 @@ class NotificationsManager
             )
                 .setContentTitle(context.getString(R.string.notification_account_registration_error_title, identity))
                 .setContentText(context.getString(R.string.notification_account_registration_error_message))
-                .setSmallIcon(R.drawable.linphone_notification)
+                .setSmallIcon(R.drawable.ohngea_notification)
                 .setAutoCancel(false)
                 .setOngoing(true)
                 .setCategory(NotificationCompat.CATEGORY_ERROR)
@@ -1898,7 +1898,7 @@ class NotificationsManager
             }
 
             val builder = NotificationCompat.Builder(context, channelId)
-                .setSmallIcon(R.drawable.linphone_notification)
+                .setSmallIcon(R.drawable.ohngea_notification)
                 .setContentText(AppUtils.getString(R.string.notification_keep_app_alive_description))
                 .setSubText(AppUtils.getString(R.string.notification_keep_app_alive_message))
                 .setAutoCancel(false)
