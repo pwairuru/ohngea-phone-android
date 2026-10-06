@@ -96,11 +96,13 @@ class AcceptConditionsAndPolicyDialogModel
 
     @UiThread
     fun dismiss() {
+        Log.i("$TAG dismiss() called")
         dismissEvent.value = Event(true)
     }
 
     @UiThread
     fun acceptConditions() {
+        Log.i("$TAG acceptConditions() called")
         conditionsAcceptedEvent.value = Event(true)
     }
 }

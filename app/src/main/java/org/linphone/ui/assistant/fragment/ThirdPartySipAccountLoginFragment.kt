@@ -224,13 +224,31 @@ class ThirdPartySipAccountLoginFragment : GenericFragment() {
         dialog.setCancelable(false)
         dialog.setCanceledOnTouchOutside(false)
 
-        model.dismissEvent.observe(viewLifecycleOwner) {
+        // Direct wiring bypass: LiveData events on this dialog post but never
+        // dispatch to observers. These run synchronously on tap.
+        dialog.findViewById<View>(R.id.confirm)?.setOnClickListener {
+            Log.i("$TAG Direct accept click: saving preference and closing dialog")
+            viewModel.conditionsAccepted.value = true
+            coreContext.postOnCoreThread {
+                corePreferences.conditionsAndPrivacyPolicyAccepted = true
+            }
+            dialog.dismiss()
+        }
+        dialog.findViewById<View>(R.id.cancel)?.setOnClickListener {
+            Log.i("$TAG Direct deny click: closing dialog")
+            dialog.dismiss()
+        }
+
+        // Note: observers use fragment lifecycle (not viewLifecycleOwner):
+        // dialog is activity-hosted and must survive fragment view recreation.
+        model.dismissEvent.observe(this) {
             it.consume {
+                Log.i("$TAG Dismiss event received, closing dialog")
                 dialog.dismiss()
             }
         }
 
-        model.conditionsAcceptedEvent.observe(viewLifecycleOwner) {
+        model.conditionsAcceptedEvent.observe(this) {
             it.consume {
                 Log.i("$TAG Conditions & Privacy policy have been accepted")
                 viewModel.conditionsAccepted.value = true
@@ -241,14 +259,14 @@ class ThirdPartySipAccountLoginFragment : GenericFragment() {
             }
         }
 
-        model.privacyPolicyClickedEvent.observe(viewLifecycleOwner) {
+        model.privacyPolicyClickedEvent.observe(this) {
             it.consume {
                 val url = getString(R.string.website_privacy_policy_url)
                 openUrlInBrowser(url)
             }
         }
 
-        model.generalTermsClickedEvent.observe(viewLifecycleOwner) {
+        model.generalTermsClickedEvent.observe(this) {
             it.consume {
                 val url = getString(R.string.website_terms_and_conditions_url)
                 openUrlInBrowser(url)

@@ -39,13 +39,12 @@ import org.linphone.ui.GenericActivity
 import org.linphone.ui.assistant.AssistantActivity
 import org.linphone.ui.welcome.fragment.WelcomePage1Fragment
 import org.linphone.ui.welcome.fragment.WelcomePage2Fragment
-import org.linphone.ui.welcome.fragment.WelcomePage3Fragment
 import org.linphone.utils.AppUtils
 
 class WelcomeActivity : GenericActivity() {
     companion object {
         private const val TAG = "[Welcome Activity]"
-        private const val PAGES = 3
+        private const val PAGES = 2
     }
 
     private lateinit var binding: WelcomeActivityBinding
@@ -116,8 +115,7 @@ class WelcomeActivity : GenericActivity() {
         override fun createFragment(position: Int): Fragment {
             return when (position) {
                 0 -> WelcomePage1Fragment()
-                1 -> WelcomePage2Fragment()
-                else -> WelcomePage3Fragment()
+                else -> WelcomePage2Fragment()
             }
         }
     }

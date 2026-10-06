@@ -89,8 +89,18 @@ class DialogUtils {
             )
             binding.viewModel = viewModel
             binding.message.movementMethod = LinkMovementMethod.getInstance()
+            // Attach listeners synchronously: dialog buttons must respond even if
+            // data-binding deferred execution hasn't run yet when dialog shows.
+            binding.executePendingBindings()
+            val dialog = getDialog(context, binding)
+            binding.confirm.setOnClickListener {
+                viewModel.acceptConditions()
+            }
+            binding.cancel.setOnClickListener {
+                viewModel.dismiss()
+            }
 
-            return getDialog(context, binding)
+            return dialog
         }
 
         @UiThread

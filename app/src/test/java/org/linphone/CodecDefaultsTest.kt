@@ -29,8 +29,9 @@ class CodecDefaultsTest {
         val text = File("src/main/assets/linphonerc_default").readText()
         val sections = Regex("""\[audio_codec_(\d+)\](.*?)(?=\n\[|\Z)""", RegexOption.DOT_MATCHES_ALL)
             .findAll(text).sortedBy { it.groupValues[1].toInt() }.toList()
+
         fun entry(body: String, key: String) =
-            Regex("""^${key}=(.*)$""", RegexOption.MULTILINE).find(body)!!.groupValues[1].trim()
+            Regex("""^$key=(.*)$""", RegexOption.MULTILINE).find(body)!!.groupValues[1].trim()
         val mimes = sections.map { entry(it.groupValues[2], "mime").lowercase() }
         assertEquals("opus", mimes[0])
         val opusEnd = mimes.indexOfLast { it == "opus" }
